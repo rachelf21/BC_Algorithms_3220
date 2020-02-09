@@ -1,0 +1,129 @@
+\documentclass[11pt, table]{article}
+\usepackage{preamble}
+
+\title{CISC 3220 Homework Chapter 2}
+\author{Rachel Friedman}
+\date{February 9, 2020}
+
+\begin{document}
+\maketitle
+
+\section*{Exercises 2.1}\nointerlineskip
+\noindent \rule{\linewidth}{0.01pt}
+\subsubsection*{Question 2.1-1}
+Illustrate the operation of INSERTION-SORT on the array  A = \textlangle 31; 41; 59; 26; 41; 58\textrangle.\\
+\bigskip
+
+
+(a)
+\begin{tabular}{*7{m{0.52cm}}}
+  \footnotesize{1} & \footnotesize{2} & \footnotesize{3} & \footnotesize{4} & \footnotesize{5} & \footnotesize{6} \\\cline{1-6}
+\end{tabular}
+
+\begin{tabular}{|*7{m{0.5cm}|}}
+\cellcolor{light-gray}{31}
+&  \cellcolor{black}\color{white} \tikzmark{Marka2}{41}
+& {59} 
+& {26} 
+& {41}  
+& {58} \\\cline{1-6}
+\end{tabular}
+\DrawBlackArrow[black]{Marka241}{Marka241}{}
+\bigskip
+
+(b)
+\begin{tabular}{*7{m{0.52cm}}}
+  \footnotesize{1} & \footnotesize{2} & \footnotesize{3} & \footnotesize{4} & \footnotesize{5} & \footnotesize{6} \\\cline{1-6}
+\end{tabular}
+
+\begin{tabular}{|*7{m{0.5cm}|}}
+{31}
+& \cellcolor{light-gray} {41} 
+& \cellcolor{black}\color{white}\tikzmark{Markb3}{59} 
+& {26} 
+& {41}  
+& {58} \\\cline{1-6}
+\end{tabular}
+\DrawBlackArrow[black]{Markb359}{Markb359}{}
+\bigskip
+
+(c)
+\begin{tabular}{*7{m{0.52cm}}}
+  \footnotesize{1} & \footnotesize{2} & \footnotesize{3} & \footnotesize{4} & \footnotesize{5} & \footnotesize{6} \\\cline{1-6}
+\end{tabular}
+
+\begin{tabular}{|*7{m{0.5cm}|}}
+\cellcolor{light-gray} \tikzmark{Markc1}{31} 
+&\cellcolor{light-gray} \tikzmark{Markc2}{41} 
+&\cellcolor{light-gray}\tikzmark{Markc3}{59} 
+&\cellcolor{black}\color{white} \tikzmark{Markc4}{26} 
+& {41}  
+& {58} \\\cline{1-6}
+\end{tabular}
+\DrawArrow[gray]{Markc131}{Markc241}{}
+\DrawArrow[gray]{Markc241}{Markc359}{}
+\DrawArrow[gray]{Markc359}{Markc426}{}
+\DrawBlackArrow[black]{Markc426}{Markc131}{}
+
+(d)
+\begin{tabular}{*7{m{0.52cm}}}
+  \footnotesize{1} & \footnotesize{2} & \footnotesize{3} & \footnotesize{4} & \footnotesize{5} & \footnotesize{6} \\\cline{1-6}
+\end{tabular}
+
+\begin{tabular}{|*7{m{0.5cm}|}}
+{26}
+&{31} 
+& \cellcolor{light-gray}{41}
+&\cellcolor{light-gray} \tikzmark{Markd4}{59} 
+&\cellcolor{black}\color{white}\tikzmark{Markd5}{41}   
+&{58} \\\cline{1-6}
+\end{tabular}
+\DrawBlackArrow[black]{Markd541}{Markd459}{}
+\DrawArrow[gray]{Markd459}{Markd541}{}
+\bigskip
+
+(e)
+\begin{tabular}{*7{m{0.52cm}}}
+  \footnotesize{1} & \footnotesize{2} & \footnotesize{3} & \footnotesize{4} & \footnotesize{5} & \footnotesize{6} \\\cline{1-6}
+\end{tabular}
+
+\begin{tabular}{|*7{m{0.5cm}|}}
+{26}
+&{31} 
+&{41}
+& \cellcolor{light-gray}{41} 
+&\cellcolor{light-gray} \tikzmark{Marke5}{59}   
+&\cellcolor{black}\color{white}\tikzmark{Marke6}{58} \\\cline{1-6}
+\end{tabular}
+\DrawBlackArrow[black]{Marke658}{Marke559}{}
+\DrawArrow[gray]{Marke559}{Marke658}{}
+
+\bigskip
+\bigskip
+(f)
+\begin{tabular}{*7{m{0.52cm}}}
+  \footnotesize{1} & \footnotesize{2} & \footnotesize{3} & \footnotesize{4} & \footnotesize{5} & \footnotesize{6} \\\cline{1-6}
+\end{tabular}
+
+\begin{tabular}{|*7{m{0.5cm}|}}
+\tikzmark{Mark1}{26}
+&{31} 
+&{41}
+&{41} 
+&{58}   
+&{59} \\\cline{1-6}
+\end{tabular}
+
+\subsubsection*{Question 2.1-2}
+Rewrite the INSERTION-SORT procedure to sort into nonincreasing order.
+\begin{lstlisting}[language=Python]
+
+for j in range(1,len(array)):
+    key = array[j]
+    i = j-1
+    while(i >= 0) and (array[i]<key):
+        array[i+1] = array[i]
+        array[i] = key
+        i = i-1
+\end{lstlisting}
+\end{document}
