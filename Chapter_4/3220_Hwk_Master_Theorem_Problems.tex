@@ -1,0 +1,53 @@
+\documentclass[11pt]{article}
+\usepackage{preamble}
+\titleformat*{\section}{\Large\bfseries}
+
+\title{CISC 3220 Homework Master Theorem}
+\author{Rachel Friedman}
+\date{March 8, 2020}
+
+\begin{document}
+\maketitle
+
+\section*{Problem 1}\nointerlineskip
+\noindent \rule{\linewidth}{0.01pt}\\
+
+\begin{flalign*}
+T(n) = 2T(n/4) + n^{0.58}\\
+&a = 2\\
+&b = 4\\
+&f(n) = n^{0.58}\\
+&n^{log_b a} = n^{log_4 2} = n {.5}\\
+\text{Case 3: } &f(n)=\Omega(n^{log_b a+\epsilon})\\
+& 0\leq n^{.5+\epsilon} \leq n^{.58}\\
+&\text{Let } \epsilon = .01\\
+&0 \leq n^{.51} \leq n^{.58}\\
+\text{Find a } c < 1 \text{ such that } a \cdot f(\frac{n}{b}) \leq c \cdot f(n) \text{for all sufficiently large n}& :\\
+&2 \cdot n^{\frac{.58}{4}} \leq c \cdot n^{.58}\\
+& \text{Let } c = \frac{1}{2}\\
+&2 \cdot n^{.145} \leq \frac{1}{2} \cdot n^{.58}\\
+\text{Dividing both sides by }n^{.145}:\\
+&2 \leq \frac{1}{2} \cdot n^{.435}\\
+\text{which is true for all sufficiently large } n \geq 5\\
+&\text{So } T(n) = \Theta(n^{.58})\\
+\end{flalign*}
+
+\newpage
+
+\section*{Problem 2}\nointerlineskip
+\noindent \rule{\linewidth}{0.01pt}\\
+
+\begin{flalign*}
+T(n) = \sqrt{3} T(n/2) + log_2 n\\
+&a = \sqrt{3}\\
+&b = 2\\
+&f(n) =log_2 {n}\\
+&n^{log_b a} = n^{log_2 \sqrt{3}} = n^{\frac{log_2 3}{2(log_2 2)}} \approx n^{\frac{1.585}{2} }\approx n^{.8}\\
+\text{Case 1: }  &f(n)=\mathcal{O}(n^{log_b a-\epsilon})\\
+& 0 \leq log_2 n \leq c \cdot n^{.8-\epsilon}\\
+&\text{Let } \epsilon = .1\\
+\text{For all asymptotically positive functions, there is a c such that: } &0 \leq log_2 n \leq c \cdot n^{.7}\\
+&\text{So } T(n) = \Theta(n^{log_2 \sqrt(3)})\\
+\end{flalign*}
+
+\end{document}
