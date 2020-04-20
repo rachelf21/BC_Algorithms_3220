@@ -1,0 +1,184 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+
+% add LaTeX packages to use here
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{enumitem}
+\usepackage{framed}
+\usepackage[most]{tcolorbox}
+\usepackage{geometry}
+\usepackage{graphicx}
+
+ % set dimensions for page layout
+\geometry
+{
+ left=5em,
+ right=5em,
+ bottom=5em,
+ top=5.7em,
+ headheight=110pt,
+ showframe=false
+}
+
+\setlist[itemize]{leftmargin=*} % prevents indenting of itemize
+
+% abbreviations for some common math symbols
+\newcommand{\Rset}{\hbox{$\mathbb R$}}
+\newcommand{\Nset}{\hbox{$\mathbb N$}}
+\newcommand{\Pset}{\hbox{$\mathbb{N}^{+}$}}
+\newcommand{\Zset}{\hbox{$\mathbb N$}}
+\newcommand{\Qset}{\hbox{$\mathbb Q$}}
+
+% theorem style
+\newtheoremstyle{thmstyle}% name of the style to be used
+  {0pt}% measure of space to leave above the theorem. E.g.: 3pt
+  {0pt}% measure of space to leave below the theorem. E.g.: 3pt
+  {}% name of font to use in the body of the theorem
+  {}% measure of space to indent
+  {\bfseries}% name of head font
+  {.}% punctuation between head and body
+  { }% space after theorem head; " " = normal inter-word space
+  {}% Manually specify head
+
+% theorem environment instance
+\theoremstyle{thmstyle}
+\newtheorem{theorem}{Theorem}
+
+% shaded and framed solution environment 
+\makeatletter
+\newenvironment{shadedSolutionBox}
+  {\setlength{\OuterFrameSep}{0in}%
+  \definecolor{shadecolor}{gray}{.8}% shading of shaded solution box
+  \bigskip%
+  \@nameuse{shaded*}\par\noindent\ignorespaces \textit{Solution}.}
+  {\hspace{\stretch{1}}\rule{1.5ex}{1.5ex}% adds filled box 
+  \@nameuse{endshaded*}%
+  \bigskip}
+\makeatother
+
+% shaded and framed theorem environment 
+\makeatletter
+\newenvironment{thm}
+  {\setlength{\OuterFrameSep}{0in}%
+  \definecolor{shadecolor}{gray}{1}% shading of shaded Theorem box
+  \@nameuse{snugshade*}\par\noindent\ignorespaces%
+   \@nameuse{theorem}}
+  {\hspace{\stretch{1}}\scalebox{1.5}{\hbox{$\triangleleft$}}% adds triangle shape
+  \@nameuse{endtheorem}%
+  \@nameuse{endsnugshade*}%
+  }
+\makeatother
+
+% header and footer elements of every page except the first.
+\pagestyle{fancy}
+\fancyfoot[L]{{\textsc{cisc} \small\selectfont 3220}}
+\fancyhead[R]{{\small\selectfont\textsc{\studentLastName}}}
+\fancyfoot[C]{{\small\selectfont\assignmentName}}
+\fancyfoot[R]{{\small\selectfont\thepage\ of \pageref{LastPage}}}
+\renewcommand{\headrulewidth}{0.8pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
+% hline with variable thickness
+\makeatletter
+\def\thickhline{%
+  \noalign{\ifnum0=`}\fi\hrule \@height \thickarrayrulewidth \futurelet
+   \reserved@a\@xthickhline}
+\def\@xthickhline{\ifx\reserved@a\thickhline
+               \vskip\doublerulesep
+               \vskip-\thickarrayrulewidth
+             \fi
+      \ifnum0=`{\fi}}
+\makeatother
+
+% length instance for \thickhline
+\newlength{\thickarrayrulewidth} 
+\setlength{\thickarrayrulewidth}{.8pt}
+
+% header and footer for first page
+\fancypagestyle{firstpage}
+{
+\fancyhf{}
+\renewcommand{\footrulewidth}{0.4pt}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhead[C]{%
+\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}@{}l @{} c @{} r @{} }
+{\small\selectfont\courseName}&{\normalsize\selectfont\assignmentName}&{\small\selectfont\studentFirstName\ \studentLastName}\\
+\thickhline
+&&{\scriptsize\selectfont\collaboratorNames}
+\end{tabular*}%
+}
+\fancyfoot[R]{{\small\selectfont\thepage\ of \pageref{LastPage}}}
+\fancyfoot[L]{{\footnotesize\selectfont\pdfcreationdate}}
+}
+
+\newcommand{\courseName}{Analysis of Algorithms} % course name
+
+% your first name, your last name, and the assignment name
+\newcommand{\studentLastName}{Friedman}
+\newcommand{\studentFirstName}{Rachel} 
+\newcommand{\assignmentName}{Assignment 6}
+\newcommand{\collaboratorNames}{}
+
+
+
+
+\begin{document} % marks the beginning of the document
+
+\thispagestyle{firstpage} % institutes page style for first page
+
+\setlength{\abovedisplayskip}{20pt} % space above math in align* environment
+\setlength{\belowdisplayskip}{20pt} % space below math in align* environment
+
+
+
+% marks the beginning of the document body
+
+\begin{itemize}\setlength{\itemsep}{1em} % \itemsep is the spacing between items in environment
+\item[1.]  Show that for every integer $n\in\Pset$: 
+\begin{align*}
+\sum^{n}_{i=1}\frac{1}{(4n+1)(4n-3)}\quad&=\quad\frac{n}{4n+1}.
+\end{align*} 
+\end{itemize}
+
+
+\begin{shadedSolutionBox} Use mathematical induction to establish that for every integer $n\in\Pset$:
+\begin{align*}
+\sum^{n}_{i=1}\frac{1}{(4n+1)(4n-3)}\quad&=\quad\frac{n}{4n+1}.
+\end{align*} 
+\end{shadedSolutionBox}
+
+
+\vspace{1in}
+
+{\begin{flushright}{\Large\selectfont Continued on next page...}\end{flushright}}
+\newpage
+
+Here is a theorem:
+\begin{thm} Let $a,b\in\Rset$.  For every integer $n\in\Nset$:
+ \begin{align*}
+\sum^{n}_{m=0}(a + mb)\quad&=\quad \frac{(n + 1)(2a + nb)}{2}.
+ \end{align*}
+\end{thm}
+
+\begin{proof}  Let $a,b\in\Rset$. Observe that the identity in question readily follows from the well-known identity for evaluating the sum of the first $n$ natural numbers: 
+\begin{align*}
+\sum^{n}_{m=0}m\quad&=\quad \frac{n\bigl(n\,+\,1\bigr)}{2}.
+\end{align*}
+Indeed, for every $n\in\Nset$:
+\begin{align*}
+\sum^{n}_{m=0}\bigl(a\,+\,mb\bigr)\quad&=\quad a\sum^{n}_{m=0}1\;+\;b\sum^{n}_{m=0}m\\[1.2ex]
+\quad&=\quad a\bigl(n\,+\,1\bigr)\;+\;b\,\frac{n\bigl(n\,+\,1\bigr)}{2}\\[1.2ex]
+\quad&=\quad \frac{2a\bigl(n\,+\,1\bigr)\;+\;nb\bigl(n\,+\,1\bigr)}{2}\\[1.2ex]
+\quad&=\quad\frac{\bigl(n\,+\,1\bigr)\bigl(2a\,+\,nb\bigr)}{2}.\\
+\end{align*}
+\end{proof}
+
+
+
+
+\end{document}
