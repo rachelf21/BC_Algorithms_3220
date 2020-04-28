@@ -1,0 +1,114 @@
+\documentclass[11pt]{article}
+\usepackage{preamble}
+
+\usepackage{listings, courier}
+\lstset{basicstyle=\small\ttfamily,breaklines=true}
+%mathtools included in preamble
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+
+\titleformat*{\section}{\Large\bfseries}
+
+\title{CISC 3220 Homework Chapter 8}
+\author{Rachel Friedman}
+\date{April 24, 2020}
+
+\begin{document}
+\maketitle
+
+\section*{Exercise 8.1}\nointerlineskip
+\noindent \rule{\linewidth}{0.01pt}\\
+
+\subsubsection*{Question 8.1-1}\nointerlineskip
+
+What is the smallest possible depth of a leaf in a decision tree for comparison?\\
+
+In a best case scenario, each element is compared only once with another element. Therefore, there are $n-1$ comparisons,  which is equivalent to a path of length $n-1$.\\
+\vspace{50pt}
+
+\null\hfill
+\textit{Continue to next page }\\
+
+\newpage
+\section*{Exercise 8.2}\nointerlineskip
+\noindent \rule{\linewidth}{0.01pt}\\
+\subsubsection*{Question 8.2-1}\nointerlineskip
+Illustrate the operation of \textcolor{blue}{COUNTING-SORT} on the array $A = \langle 6, 0, 2, 0, 1, 3, 4, 6, 1, 3, 2\rangle$.\\
+Running time: \textcolor{blue}{$\Theta(n+k)$}. And if $k=\mathcal{O}(n)$, running time is $\Theta(n)$.\\[12pt]
+\includegraphics[scale=.9]{Ques8-2-1.png}\\
+
+\section*{Exercise 8.3}\nointerlineskip
+\noindent \rule{\linewidth}{0.01pt}\\
+\subsubsection*{Question 8.3-1}\nointerlineskip
+
+Illustrate the operation of \textcolor{blue}{RADIX-SORT} on the following list of English words: COW, DOG, SEA, RUG, ROW, MOB, BOX, TAB, BAR, EAR, TAR, DIG, BIG, TEA, NOW, FOX.\\[6pt]
+Running time: \textcolor{blue}{$\Theta(d(n+k))$}.\\[12pt]
+\begin{center}
+\begin{multicols}{3}
+\noindent \textbf{PASS 1}\\
+SE\textcolor{red}{A}\\
+TE\textcolor{red}{A}\\
+MO\textcolor{red}{B}\\
+TA\textcolor{red}{B}\\
+DO\textcolor{red}{G}\\
+RU\textcolor{red}{G}\\
+DI\textcolor{red}{G}\\
+BI\textcolor{red}{G}\\
+BA\textcolor{red}{R}\\
+EA\textcolor{red}{R}\\
+TA\textcolor{red}{R}\\
+CO\textcolor{red}{W}\\
+RO\textcolor{red}{W}\\
+NO\textcolor{red}{W}\\
+BO\textcolor{red}{X}\\
+FO\textcolor{red}{X}\\
+
+\columnbreak
+\noindent \textbf{PASS 2}\\
+\noindent T\textcolor{red}{A}B\\
+B\textcolor{red}{A}R\\
+E\textcolor{red}{A}R\\
+T\textcolor{red}{A}R\\
+S\textcolor{red}{E}A\\
+T\textcolor{red}{E}A\\
+D\textcolor{red}{I}G\\
+B\textcolor{red}{I}G\\
+M\textcolor{red}{O}B\\
+D\textcolor{red}{O}G\\
+C\textcolor{red}{O}W\\
+R\textcolor{red}{O}W\\
+N\textcolor{red}{O}W\\
+B\textcolor{red}{O}X\\
+F\textcolor{red}{O}X\\
+R\textcolor{red}{U}G\\
+
+\columnbreak
+\noindent \textbf{PASS 3}\\
+\noindent \textcolor{red}{B}AR\\
+\textcolor{red}{B}IG\\
+\textcolor{red}{B}OX\\
+\textcolor{red}{C}OW\\
+\textcolor{red}{D}IG\\
+\textcolor{red}{D}OG\\
+\textcolor{red}{E}AR\\
+\textcolor{red}{F}OX\\
+\textcolor{red}{M}OB\\
+\textcolor{red}{N}OW\\
+\textcolor{red}{R}OW\\
+\textcolor{red}{R}UG\\
+\textcolor{red}{S}EA\\
+\textcolor{red}{T}AB\\
+\textcolor{red}{T}AR\\
+\textcolor{red}{T}EA\\
+
+\end{multicols}
+
+\end{center}
+\vspace{20pt}
+
+
+
+
+
+\end{document}

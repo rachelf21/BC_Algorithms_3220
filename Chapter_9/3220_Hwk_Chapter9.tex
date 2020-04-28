@@ -1,0 +1,139 @@
+\documentclass[11pt]{article}
+\usepackage{preamble}
+
+\usepackage{listings, courier}
+\usepackage{mdframed} %for background color
+\lstset{basicstyle=\small\ttfamily,breaklines=true}
+%mathtools included in preamble
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+
+\titleformat*{\section}{\Large\bfseries}
+
+\title{CISC 3220 Homework Chapter 9}
+\author{Rachel Friedman}
+\date{April 26, 2020}
+
+\begin{document}
+\maketitle
+
+\section*{Exercise 9.1}\nointerlineskip
+\noindent \rule{\linewidth}{0.01pt}\\
+\subsubsection*{Question 9.1-1}\nointerlineskip
+
+Show that the second smallest of $n$ elements can be found with $n+\lceil \text{log }n \rceil - 2 $ comparisons in the worst case.\\
+
+The smallest element is found in $n-1$ comparisons, through a tournament style comparison where each one of the ``winners'' advances to the next round. This results in $\lceil \text{log }n \rceil$ rounds. The second smallest element is one of those $\lceil \text{log }n \rceil$ elements. We now make $\lceil \text{log }n \rceil -1$ comparisons with those elements. So, in total, the amount of comparisons is $n-1 + (\lceil \text{log }n \rceil - 1)$ which is equal to $n+\lceil \text{log } n \rceil - 2 $ comparisons.\\
+
+\section*{Exercise 9.2}\nointerlineskip
+\noindent \rule{\linewidth}{0.01pt}\\
+\subsubsection*{Question 9.2-3}\nointerlineskip
+Write an iterative version of RANDOMIZED-SELECT.\\
+
+\begin{center}  
+\begin{multicols}{2}
+\begin{mdframed}[backgroundcolor=gray!5]
+\begin{lstlisting}
+PARTITION(A, p, r)
+    x = A[r]
+    i = p
+    for k = p - 1 to r
+       if A[k] < x
+           i = i + 1
+           swap A[i] with A[k]
+    i = i + 1
+    swap A[i] with A[r]
+    return i
+\end{lstlisting}
+\end{mdframed}    
+
+\begin{mdframed}[backgroundcolor=gray!5]
+\begin{lstlisting}    
+RANDOMIZED-PARTITION(A, p, r)
+    x = RANDOM(p - 1, r)
+    swap A[x] with A[r]
+    return PARTITION(A, p, r)
+\end{lstlisting}
+\end{mdframed}
+\columnbreak
+
+\begin{mdframed}[backgroundcolor=gray!5]
+
+\begin{lstlisting}
+RANDOMIZED-SELECT(A, p, r, i)
+    while true
+        if p == r
+            return A[p]
+        q = RANDOMIZED-PARTITION(A, p, r)
+        k = q - p + 1
+        if i == k
+            return A[q]
+        if i < k
+            r = q
+        else
+            p = q
+            i = i - k
+    
+\end{lstlisting}
+\end{mdframed}
+\end{multicols}
+
+\end{center}
+
+\newpage
+\section*{Exercise 9.3}\nointerlineskip
+\noindent \rule{\linewidth}{0.01pt}\\
+\subsubsection*{Question 9.3-7}\nointerlineskip
+Describe an $\mathcal{O}(n)$ running time algorithm that, given a set $S$ of $n$ distinct numbers and a positive integer $k \leq n$, determines the $k$ numbers in $S$ that are closest to the median of $S$.\\
+
+For simplicity's sake, assume $n$ is odd and $k$ is even and the set $S$ is sorted:
+\begin{enumerate}
+\item Use linear time selection to find the median in position $n/2$.
+\item Use linear time selection to find the element in position $(n-k)/2$.
+\item Use linear time selection to find the element in position $(n+k)/2$.
+\item Then traverse the set $S$ to find the elements that are less than $(n-k)/2$, and greater than $(n+k)/2$, and not equal to $n/2$.
+\end{enumerate}
+Thus, the algorithm takes $\mathcal{O}(n)$ times, since we use linear time selection exactly three times, and traverse the set once.\\
+
+\subsubsection*{Question 9.3-8}\nointerlineskip
+Let $X \lceil 1 ..n \rceil$ and $Y \lceil 1 ..n \rceil$ be two arrays, each containing $n$ numbers already in sorted order. Give an $\mathcal{O}(\log n)$-time algorithm to find the median of all 2$n$ elements in arrays $X$ and $Y$.\\
+
+
+Repeat the following until length of array is 1:
+\begin{enumerate}
+\item Get the median of each array.
+\item Take the upper portion of the array with the lower median.
+\item Take the lower portion of the array with the higher median.
+\item Is there more than one element left in each array?
+\begin{enumerate}
+\item Yes - go back to step 1.
+\item No - return the lower number of the two.\\
+\end{enumerate}
+\end{enumerate}
+
+\begin{center}  
+\begin{minipage}{5in}
+\begin{lstlisting}[language=Python]
+def find_median_two_arrays(a, b):
+    if len(a) == 1:
+        return min(a[0], b[0])
+
+    median = len(a)/2
+    i = median + 1
+    if a[median] < b[median]:
+        return find_median_two_arrays(a[-i:], b[:i])
+    else:
+        return find_median_two_arrays(a[:i], b[-i:])
+        
+\end{lstlisting}
+\end{minipage}
+\end{center}
+
+\vspace{20pt}
+
+
+
+
+
+\end{document}
